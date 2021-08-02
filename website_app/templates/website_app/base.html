@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<header>
+<title>{% block title %}{% endblock title %}</title>
+<nav>  
+	<ul>
+		<li><a href="{% url "home" %}">Home</a></li>
+		<li><a href="{% url "purchases" %}">Purchases</a></li>
+        <li><a href="{% url "menu_items" %}">Menu Items</a></li>
+        <li><a href="{% url "ingredients" %}">Inventory</a></li>
+		<li><a href="{% url "logout" %}">Log Out</a></li>
+	</ul>
+</nav>
+{% block header %}{% endblock header %}
+</header>
+<body>
+<h1>{% block h1 %}{% endblock h1 %}</h1>
+<content>{% block content %}{% endblock content %}</content>
+</body>
+<footer>
+{% block footer %}{% endblock footer %}
+</footer>
+</html>

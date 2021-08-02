@@ -1,0 +1,12 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Delete Menu Item{% endblock title %}
+{% block h1 %}Delete Menu Item{% endblock h1 %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ menuitem.name }}"?</p>
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock content %}
+

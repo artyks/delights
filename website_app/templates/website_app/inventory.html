@@ -1,0 +1,28 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Inventory{% endblock title %}
+{% block h1 %}Inventory{% endblock h1 %}
+
+{% block content %}
+{% comment %} {% filter force_escape %}{% debug %}{% endfilter %} {% endcomment %}
+<div class="add_ingredient_button_wrapper">
+    <a href="{% url "add_ingredient" %}"><button type="button">Add New</button></a>
+</div>
+</br>
+<table>
+    <tr>
+        <th>Ingredient</th>
+        <th>Amount Left</th>
+        <th>Price/Unit</th>
+    </tr>
+    
+    {% for ingredient in ingredient_list|dictsort:"amount_left" %}
+    <tr>
+        <td>{{ ingredient.name }}</td>
+        <td>{{ ingredient.amount_left }}</td>
+        <td>${{ ingredient.price_per_unit }} / {{ ingredient.per_unit_measure }}</td>
+        <td><a href="{% url 'update_ingredient' ingredient.id %}"><button type="button">Update</button></a></td>
+        <td><a href="{% url 'delete_ingredient' ingredient.id %}"><button type="button">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Delete Purchase{% endblock title %}
+{% block h1 %}Delete Purchase{% endblock h1 %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete purchase with id # "{{ purchase }}" ({{ purchase.time_stamp }})?</p>
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock content %}
+

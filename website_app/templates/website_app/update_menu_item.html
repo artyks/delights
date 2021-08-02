@@ -1,0 +1,12 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Update Menu Item{% endblock title %}
+{% block h1 %}Update Menu Item{% endblock h1 %}
+
+{% block content %}
+    {% comment %} {% filter force_escape %}{% debug %}{% endfilter %} {% endcomment %}
+    <form  method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input value="Submit" type="submit"></input>
+    </form>
+{% endblock content %}

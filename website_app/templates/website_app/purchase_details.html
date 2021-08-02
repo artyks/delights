@@ -1,0 +1,24 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Purchase # {{ purchase.id }} Details{% endblock title %}
+{% block h1 %}Purchase # {{ purchase.id }} Details{% endblock h1 %}
+
+{% block content %}
+    <div class="time_stamp">
+        Purchase made on {{ purchase.time_stamp }}
+    </div>
+    <ul class="purchased_list">
+        {% for menu_item in purchase.menu_item.all %}
+            <li>
+                <a href="{% url 'menu_item_details' menu_item.pk %}">{{ menu_item.name }}</a> — ${{ menu_item.price }}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="PurchaseTotal">Total: {{ purchase.total }}</div>
+
+    <div class="add_menu_item_button_wrapper">
+    <a href="{% url "update_purchase" purchase.id True %}"><button type="button">Update</button></a>
+    <a href="{% url "delete_purchase" purchase.id %}"><button type="button">Delete</button></a>
+    </div>
+    </br>
+
+{% endblock content %}

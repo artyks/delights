@@ -1,0 +1,25 @@
+{% extends 'website_app/base.html' %}
+{% block title %}{{ menuitem.name }}{% endblock title %}
+{% block h1 %}{{ menuitem.name }}{% endblock h1 %}
+
+{% block content %}
+    {% comment %} {% filter force_escape %}{% debug %}{% endfilter %} {% endcomment %}
+    <div class="menu_item_price">
+        Price: ${{ menuitem.price }}
+    </div>
+    <ul class="ingredients_list">
+        {% for id, ingredient in menuitem.get_ingredients.items %}
+            <li>
+                {{ ingredient.name }} — {{ ingredient.amount_needed }} {{ ingredient.unit }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% comment %} </br> {% endcomment %}
+    <div class="add_menu_item_button_wrapper">
+    <a href="{% url "update_menu_item" menuitem.id True %}"><button type="button">Update</button></a>
+    <a href="{% url "add_ingredient_to_menu_i" menuitem.id %}"><button type="button">Add Ingredients</button></a>
+    <a href="{% url "delete_menu_item" menuitem.id %}"><button type="button">Delete</button></a>
+    </div>
+    </br>
+
+{% endblock content %}

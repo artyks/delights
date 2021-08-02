@@ -1,0 +1,33 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Purchase History{% endblock title %}
+{% block h1 %}Purchase History{% endblock h1 %}
+
+{% block content %}
+{% comment %} {% filter force_escape %}{% debug %}{% endfilter %} {% endcomment %}
+
+<div class="add_purchase_button_wrapper">
+    <a href="{% url "add_purchase" %}"><button type="button">Add Purchase</button></a>
+</div>
+</br>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Time</th>
+        <th>Items Amount</th>
+        <th>Price</th>
+        <th>Costs</th>
+        {% comment %} <th>Details</th> {% endcomment %}
+    </tr>
+    {% for purchase in purchase_list|dictsortreversed:"id" %}
+    <tr>
+        <td>{{ purchase.id }}</td>
+        <td>{{ purchase.time_stamp }}</td>
+        <td>{{ purchase.get_menu_items_amount }}</td>
+        <td>{{ purchase.total }}</td>
+        <td>{{ purchase.get_costs }}</td>
+        <td><a href="{% url "purchase_details" purchase.id %}"><button type="button">Details</button></a></td>
+        <td><a href="{% url "update_purchase" purchase.id "False" %}"><button type="button">Update</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

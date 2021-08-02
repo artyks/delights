@@ -1,0 +1,15 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Add Ingredients{% endblock title %}
+
+{% block h1 %}
+Add Ingredients to {{ view.active_menu_item }}
+{% comment %} {% for i in view.get_context_data %}{{ i }}{% endfor %} {% endcomment %}
+{% endblock h1 %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input value="Submit" type="submit"></input>
+    </form>
+{% endblock content %}

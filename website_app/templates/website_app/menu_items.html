@@ -1,0 +1,29 @@
+{% extends 'website_app/base.html' %}
+{% block title %}Menu Items{% endblock title %}
+{% block h1 %}Menu Items{% endblock h1 %}
+
+{% block content %}
+{% comment %} {% filter force_escape %}{% debug %}{% endfilter %} {% endcomment %}
+<div class="add_menu_item_button_wrapper">
+    <a href="{% url "add_menu_item" %}"><button type="button">Add New</button></a>
+</div>
+</br>
+<table>
+    <tr>
+        <th>Dish</th>
+        <th>Price</th>
+        <th>Cost</th>
+        {% comment %} <th>Details</th> {% endcomment %}
+    </tr>
+    
+    {% for menu_item in menuitem_list|dictsortreversed:"id" %}
+    <tr>
+        <td>{{ menu_item.name }}</td>
+        <td>${{ menu_item.price }}</td>
+        <td>${{ menu_item.get_cost }}</td>
+        <td><a href="{% url "menu_item_details" menu_item.id %}"><button type="button">Details</button></a></td>
+        <td><a href="{% url "update_menu_item" menu_item.id False %}"><button type="button">Update</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}
